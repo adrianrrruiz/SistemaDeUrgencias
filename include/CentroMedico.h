@@ -10,8 +10,6 @@ class CentroMedico {
 public:
     void agregarNuevoMedico(const Medico& medico);
     void agregarPacienteAConsultorio(const Paciente& paciente, int id_medico);
-
-private:
     vector<Medico> medicos_disponibles;
 };
 

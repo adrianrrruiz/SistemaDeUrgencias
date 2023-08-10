@@ -1,0 +1,60 @@
+@
+Javier García, 1029384756, 28
+Daniel Ruiz, 1234567890, 19, 3
+Sofia García, 2345678901, 32, 2
+Alejandro Lopez, 3456789012, 45, 4
+@
+@
+María Rodriguez, 2837465910, 42
+Ana Martinez, 4567890123, 28, 3
+Juan Rodriguez, 5678901234, 56, 1
+Carla Perez, 6789012345, 21, 3
+@
+@
+Andrés Martínez, 3948576210, 35
+Andrés Sanchez, 7890123456, 39, 2
+Valeria Torres, 8901234567, 42, 4
+Mario Herrera, 9012345678, 35, 3
+@
+@
+Luisa Perez, 4761928345, 19
+Laura Gomez, 0123456789, 29, 2
+Ricardo Castro, 9876543210, 31, 3
+Isabel Rivera, 8765432109, 47, 4
+@
+@
+Diego Ramirez, 5892736401, 56
+Sergio Fernandez, 7654321098, 53, 1
+Mariana Mendoza, 6543210987, 25, 3
+Pablo Jimenez, 5432109876, 36, 2
+@
+@
+Ana López, 6019283745, 31
+Natalia Silva, 4321098765, 23, 4
+Diego Vargas, 3210987654, 40, 3
+Lucia Ramírez, 2109876543, 30, 2
+@
+@
+Carolina Sanchez, 7128495062, 24
+Emilio Ortega, 1098765432, 48, 1
+Camila Rios, 0987654321, 27, 3
+Julio Cordero, 9876543210, 44, 2
+@
+@
+Carlos Torres, 8253749160, 38
+Valentina Rojas, 8765432109, 33, 4
+Mateo Soto, 7654321098, 22, 3
+Martina Paredes, 6543210987, 37, 2
+@
+@
+Fernanda Castro, 9384057261, 47
+Gabriel Navarro, 5432109876, 26, 3
+Abril Fuentes, 4321098765, 43, 4
+Fabián Rivas, 3210987654, 34, 1
+@
+@
+Roberto Gómez, 0485963721, 29
+Renata Calderón, 2109876543, 41, 3
+Hugo Medina, 1098765432, 24, 2
+Ximena Mora, 0987654321, 38, 4
+@

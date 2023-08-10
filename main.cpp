@@ -2,11 +2,20 @@
 #include "include\\Paciente.h"
 #include "include\\Medico.h"
 #include "include\\CentroMedico.h"
+#include <fstream>
+#include <sstream>
 
 using namespace std;
 
+void leerArchivo(CentroMedico &centro_medico);
+
 int main() {
     CentroMedico centro_medico;
+    leerArchivo(centro_medico);
+
+    for(Medico medico : centro_medico.medicos_disponibles){
+        cout << medico.nombre << endl;
+    }
 
     int opcion;
 
@@ -69,3 +78,56 @@ int main() {
     return 0;
 }
 
+void leerArchivo(CentroMedico &centro_medico){
+       int x = 0;
+
+    ifstream inputFile("files\\informacion.txt");
+
+    if (!inputFile) {
+        cerr << "Error al abrir el archivo." << endl;
+    }
+
+    string linea;
+    while (getline(inputFile, linea)) {
+        if (linea == "@") {
+            if (getline(inputFile, linea)) {
+                istringstream iss(linea);
+                string Nombre;
+		int ID;
+                int edad;
+
+                getline(iss, Nombre, ',');
+                iss >> ID;
+                iss.ignore();
+                iss >> edad;
+
+		Medico medico = {Nombre,ID,edad};
+		centro_medico.agregarNuevoMedico(medico);
+
+                getline(inputFile, linea);
+                while (linea != "@") {
+                    istringstream issPaciente(linea);
+                    string nombre;
+                    string ID;
+                    int edad;
+                    int triage;
+
+                    getline(issPaciente, nombre, ',');
+		    getline(issPaciente, ID, ',');
+                    issPaciente >> edad;
+                    issPaciente.ignore();
+                    issPaciente >> triage;
+
+		    Paciente paciente ={nombre,ID,edad,triage};
+		    centro_medico.medicos_disponibles[x].agregarNuevoPaciente(paciente);
+
+                    getline(inputFile, linea);
+                }
+
+                x++;
+            }
+        }
+    }
+
+    inputFile.close();
+}

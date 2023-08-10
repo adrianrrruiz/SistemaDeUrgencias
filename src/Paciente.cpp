@@ -1,4 +1,4 @@
-#include "Paciente.h"
+#include "..\\include\\Paciente.h"
 using namespace std;
 
 Paciente::Paciente(const string& nombre, const string& doc_identificacion, int edad, int triage)

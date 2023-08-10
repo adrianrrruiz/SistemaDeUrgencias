@@ -1,7 +1,7 @@
 #include <iostream>
-#include "Paciente.h"
-#include "Medico.h"
-#include "CentroMedico.h"
+#include "include\\Paciente.h"
+#include "include\\Medico.h"
+#include "include\\CentroMedico.h"
 
 using namespace std;
 

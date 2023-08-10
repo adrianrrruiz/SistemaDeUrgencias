@@ -1,4 +1,4 @@
-#include "Medico.h"
+#include "..\\include\\Medico.h"
 using namespace std;
 
 Medico::Medico(const string& nombre, int id_medico, int edad)

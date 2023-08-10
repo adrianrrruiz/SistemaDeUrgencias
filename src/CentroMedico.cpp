@@ -1,4 +1,4 @@
-#include "CentroMedico.h"
+#include "..\\include\\CentroMedico.h"
 using namespace std;
 
 void CentroMedico::agregarNuevoMedico(const Medico& medico) {

@@ -9,6 +9,8 @@ using namespace std;
 
 class Medico {
 public:
+
+    void agregarNuevoPaciente(const Paciente& paciente);
     Medico(const string& nombre, int id_medico, int edad);
 
     string nombre;

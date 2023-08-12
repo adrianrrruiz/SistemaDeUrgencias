@@ -7,22 +7,20 @@
 
 using namespace std;
 
-void leerArchivo(CentroMedico &centro_medico);
+void leerMedicos(CentroMedico &centroMedico);
+void leerPacientes(CentroMedico &centroMedico);
 
 int main() {
     CentroMedico centro_medico;
-    leerArchivo(centro_medico);
-
-    for(Medico medico : centro_medico.medicos_disponibles){
-        cout << medico.nombre << endl;
-    }
+    leerPacientes(centro_medico);
+    leerMedicos(centro_medico);
 
     int opcion;
 
-    cout << "Opciones:" << endl;
-    cout << "1. Agregar nuevo medico" << endl;
-    cout << "2. Agregar paciente a consultorio" << endl;
-    cout << "3. Salir" << endl;
+    cout << "===== Bienvenido al SISTEMA DE URGENCIAS =====\n";
+    cout << "1. Agregar nuevo medico\n";
+    cout << "2. Agregar paciente a consultorio\n";
+    cout << "3. Salir\n";
     cout << "Seleccione una opcion: ";
     cin >> opcion;
 
@@ -70,64 +68,59 @@ int main() {
             break;
         }
         case 3:
-            cout << "Programa finalizado" << endl;
+            cout << "Programa finalizado\n"; 
             break;
         default:
-            cout << "Opcion invalida" << endl;
+            cout << "Opcion invalida\n"; 
     }
     return 0;
 }
 
-void leerArchivo(CentroMedico &centro_medico){
-       int x = 0;
+void leerMedicos(CentroMedico &centroMedico){
+    ifstream file("files\\medicos.txt");
+    string linea, nombre;
+    int ID, edad;
 
-    ifstream inputFile("files\\informacion.txt");
-
-    if (!inputFile) {
-        cerr << "Error al abrir el archivo." << endl;
-    }
-
-    string linea;
-    while (getline(inputFile, linea)) {
-        if (linea == "@") {
-            if (getline(inputFile, linea)) {
-                istringstream iss(linea);
-                string Nombre;
-		int ID;
-                int edad;
-
-                getline(iss, Nombre, ',');
-                iss >> ID;
-                iss.ignore();
-                iss >> edad;
-
-		Medico medico = {Nombre,ID,edad};
-		centro_medico.agregarNuevoMedico(medico);
-
-                getline(inputFile, linea);
-                while (linea != "@") {
-                    istringstream issPaciente(linea);
-                    string nombre;
-                    string ID;
-                    int edad;
-                    int triage;
-
-                    getline(issPaciente, nombre, ',');
-		    getline(issPaciente, ID, ',');
-                    issPaciente >> edad;
-                    issPaciente.ignore();
-                    issPaciente >> triage;
-
-		    Paciente paciente ={nombre,ID,edad,triage};
-		    centro_medico.medicos_disponibles[x].agregarNuevoPaciente(paciente);
-
-                    getline(inputFile, linea);
-                }
-
-                x++;
-            }
+    if(file){
+        while(!file.eof()){
+            getline(file, linea);
+            istringstream isMedico(linea);
+            getline(isMedico, nombre, ',');
+            isMedico >> ID;
+            isMedico.ignore();
+            isMedico >> edad;
+            Medico medico = {nombre,ID,edad};
+            centroMedico.agregarNuevoMedico(medico);
+            file.close();
         }
+    }else{
+        cout << "No se pudo leer el archivo!\n";
     }
+}
 
-    inputFile.close();
+void leerPacientes(CentroMedico &centroMedico){
+    ifstream file("files\\pacientes.txt");
+    string linea, nombre, ID;
+    int edad, triage;
+
+    if(file){
+        while(!file.eof()){
+            getline(file, linea);
+            istringstream isPaciente(linea);
+            getline(isPaciente, nombre, ',');
+            getline(isPaciente, ID, ',');
+            isPaciente >> edad;
+            isPaciente.ignore();
+            isPaciente >> triage;
+            Paciente paciente = {nombre,ID,edad,triage};
+            if(paciente.triage == 1 || paciente.triage == 2 || paciente.triage == 3){
+                //Añadir a cola de prioridad
+            }else if(paciente.triage == 4 || paciente.triage == 5){
+                //Añadir a la lista de pacientes de algún médico
+            }
+            file.close();
+        }
+    }else {
+        cout << "No se pudo leer el archivo!\n";
+    }
 }

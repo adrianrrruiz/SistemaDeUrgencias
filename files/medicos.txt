@@ -1,0 +1,10 @@
+Javier Garcia,1029384756,28
+Maria Rodriguez,2837465910,42
+Andres Martinez,3948576210,35
+Luisa Perez,4761928345,19
+Diego Ramirez,5892736401,56
+Ana Lopez,6019283745,31
+Carolina Sanchez,7128495062,24
+Carlos Torres,8253749160,38
+Fernanda Castro,9384057261,47
+Roberto Gomez,0485963721,29

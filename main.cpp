@@ -91,6 +91,7 @@ void leerMedicos(CentroMedico &centroMedico){
             isMedico >> edad;
             Medico medico = {nombre,ID,edad};
             centroMedico.agregarNuevoMedico(medico);
+            file.close();
         }
     }else{
         cout << "No se pudo leer el archivo!\n";
@@ -117,6 +118,7 @@ void leerPacientes(CentroMedico &centroMedico){
             }else if(paciente.triage == 4 || paciente.triage == 5){
                 //Añadir a la lista de pacientes de algún médico
             }
+            file.close();
         }
     }else {
         cout << "No se pudo leer el archivo!\n";

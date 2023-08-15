@@ -14,7 +14,7 @@ public:
     int edad;
     int triage;
 
-    bool operator<(const Paciente& otroPaciente) {
+    bool operator<(const Paciente& otroPaciente) const {
         return triage < otroPaciente.triage; //Ordena ascendentemente
     }
 };

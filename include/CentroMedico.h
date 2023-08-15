@@ -13,6 +13,7 @@ class CentroMedico {
 public:
     void agregarNuevoMedico(const Medico& medico);
     void agregarPacienteAConsultorio(const Paciente& paciente, int id_medico);
+    Paciente siguientePaciente(int id_medico);
     void agregarPacientePrioritario(const Paciente& paciente);
     Paciente atenderPacientePrioritario();
     void imprimirAtendidos();

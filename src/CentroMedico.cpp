@@ -8,8 +8,19 @@ void CentroMedico::agregarNuevoMedico(const Medico& medico) {
 void CentroMedico::agregarPacienteAConsultorio(const Paciente& paciente, int id_medico) {
     for (auto& medico : medicos_disponibles) {
         if (medico.id_medico == id_medico) {
-            medico.lista_pacientes.push_back(paciente);
+            medico.lista_pacientes.push(paciente);
             break;
+        }
+    }
+}
+
+Paciente CentroMedico::siguientePaciente(int id_medico){   
+    for (auto& medico : medicos_disponibles) {
+        if (medico.id_medico == id_medico) {
+            Paciente pacienteAtendido = medico.lista_pacientes.front();
+            atendidos.push(pacienteAtendido);
+            medico.lista_pacientes.pop();
+            return pacienteAtendido;
         }
     }
 }

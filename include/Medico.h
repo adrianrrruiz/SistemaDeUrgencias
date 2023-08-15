@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <queue>
 #include "Paciente.h"
 
 using namespace std;
@@ -16,7 +17,7 @@ public:
     string nombre;
     int id_medico;
     int edad;
-    vector<Paciente> lista_pacientes;
+    queue<Paciente> lista_pacientes;
 };
 
 #endif  // MEDICO_H

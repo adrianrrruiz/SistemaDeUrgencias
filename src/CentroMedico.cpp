@@ -14,6 +14,10 @@ void CentroMedico::agregarPacienteAConsultorio(const Paciente& paciente, int id_
     }
 }
 
+void CentroMedico::agregarPacientePrioritario(const Paciente& paciente){
+    cola_de_prioridad.push(paciente);
+}
+
 void CentroMedico::imprimirAtendidos(){
     int pacienteNum = 1;
     while (!atendidos.empty()){

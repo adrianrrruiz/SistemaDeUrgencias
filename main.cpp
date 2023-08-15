@@ -9,12 +9,18 @@ using namespace std;
 
 void leerMedicos(CentroMedico &centroMedico);
 void leerPacientes(CentroMedico &centroMedico);
+void menu(CentroMedico &centroMedico);
 
 int main() {
     CentroMedico centro_medico;
     leerPacientes(centro_medico);
     leerMedicos(centro_medico);
 
+    menu(centro_medico);
+    return 0;
+}
+
+void menu(CentroMedico &centroMedico){
     int opcion;
 
     cout << "===== Bienvenido al SISTEMA DE URGENCIAS =====\n";
@@ -40,7 +46,7 @@ int main() {
             cin >> edad;
 
             Medico medico(nombre, id_medico, edad);
-            centro_medico.agregarNuevoMedico(medico);
+            centroMedico.agregarNuevoMedico(medico);
             break;
         }
         case 2: {
@@ -64,7 +70,7 @@ int main() {
             cin >> id_medico;
 
             Paciente paciente(nombre, doc_identificacion, edad, triage);
-            centro_medico.agregarPacienteAConsultorio(paciente, id_medico);
+            centroMedico.agregarPacienteAConsultorio(paciente, id_medico);
             break;
         }
         case 3:
@@ -73,7 +79,6 @@ int main() {
         default:
             cout << "Opcion invalida\n"; 
     }
-    return 0;
 }
 
 void leerMedicos(CentroMedico &centroMedico){

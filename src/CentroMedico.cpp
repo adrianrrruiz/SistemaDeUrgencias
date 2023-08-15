@@ -14,3 +14,15 @@ void CentroMedico::agregarPacienteAConsultorio(const Paciente& paciente, int id_
     }
 }
 
+void CentroMedico::imprimirAtendidos(){
+    int pacienteNum = 1;
+    while (!atendidos.empty()){
+        Paciente paciente = atendidos.front();
+        cout << "\n\n===== PACIENTE #" << pacienteNum << " =====" << endl; 
+        cout << "Nombre: " << paciente.nombre << endl;
+        cout << "No. Identificacion: " << paciente.doc_identificacion << endl;
+        cout << "Edad: " << paciente.edad << endl;
+        cout << "Clasificacion en el triage: " << paciente.triage << endl;
+        atendidos.pop();
+    }
+}

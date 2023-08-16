@@ -8,19 +8,26 @@ void CentroMedico::agregarNuevoMedico(const Medico& medico) {
 void CentroMedico::agregarPacienteAConsultorio(const Paciente& paciente, int id_medico) {
     for (auto& medico : medicos_disponibles) {
         if (medico.id_medico == id_medico) {
-            medico.lista_pacientes.push(paciente);
+            medico.agregarNuevoPaciente(paciente);
             break;
         }
     }
 }
 
 Paciente CentroMedico::siguientePaciente(int id_medico){   
+    Paciente pacienteAtendido;
     for (auto& medico : medicos_disponibles) {
         if (medico.id_medico == id_medico) {
-            Paciente pacienteAtendido = medico.lista_pacientes.front();
-            atendidos.push(pacienteAtendido);
-            medico.lista_pacientes.pop();
-            return pacienteAtendido;
+            if(medico.lista_pacientes.size() > 0){
+                pacienteAtendido = medico.lista_pacientes.front();
+                atendidos.push(pacienteAtendido);
+                medico.lista_pacientes.pop();
+                return pacienteAtendido;
+            }
+            else{
+                pacienteAtendido.edad = -1;
+                return pacienteAtendido;
+            }
         }
     }
 }
@@ -37,13 +44,22 @@ Paciente CentroMedico::atenderPacientePrioritario(){
 
 void CentroMedico::imprimirAtendidos(){
     int pacienteNum = 1;
-    while (!atendidos.empty()){
-        Paciente paciente = atendidos.front();
+    queue<Paciente> aux = atendidos;
+    while (!aux.empty()){
+        Paciente paciente = aux.front();
         cout << "\n\n===== PACIENTE #" << pacienteNum << " =====" << endl; 
         cout << "Nombre: " << paciente.nombre << endl;
         cout << "No. Identificacion: " << paciente.doc_identificacion << endl;
         cout << "Edad: " << paciente.edad << endl;
         cout << "Clasificacion en el triage: " << paciente.triage << endl;
-        atendidos.pop();
+        aux.pop();
+        pacienteNum++;
     }
+}
+
+void CentroMedico::imprimirPaciente(const Paciente& paciente){
+        cout << "Nombre: " << paciente.nombre << endl;
+        cout << "No. Identificacion: " << paciente.doc_identificacion << endl;
+        cout << "Edad: " << paciente.edad << endl;
+        cout << "Clasificacion en el triage: " << paciente.triage << endl;
 }

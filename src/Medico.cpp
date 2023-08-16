@@ -2,7 +2,7 @@
 using namespace std;
 
 void Medico::agregarNuevoPaciente(const Paciente& paciente) {
-    lista_pacientes.push_back(paciente);
+    lista_pacientes.push(paciente);
 }
 
 Medico::Medico(const string& nombre, int id_medico, int edad)

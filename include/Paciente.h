@@ -13,6 +13,10 @@ public:
     string doc_identificacion;
     int edad;
     int triage;
+
+    bool operator<(const Paciente& otroPaciente) const {
+        return triage < otroPaciente.triage; //Ordena ascendentemente
+    }
 };
 
 #endif  // PACIENTE_H

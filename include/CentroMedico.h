@@ -15,6 +15,7 @@ public:
     void agregarPacienteAConsultorio(const Paciente& paciente, int id_medico);
     Paciente siguientePaciente(int id_medico);
     void agregarPacientePrioritario(const Paciente& paciente);
+    void imprimirPaciente(const Paciente& paciente);
     Paciente atenderPacientePrioritario();
     void imprimirAtendidos();
     vector<Medico> medicos_disponibles;

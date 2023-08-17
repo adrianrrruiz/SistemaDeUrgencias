@@ -4,8 +4,8 @@
 #include "include\\CentroMedico.h"
 #include <fstream>
 #include <sstream>
-#include<stdlib.h>
-#include<time.h>
+#include <stdlib.h>
+#include <time.h>
 
 using namespace std;
 
@@ -19,7 +19,6 @@ int main() {
     leerMedicos(centro_medico);
     leerPacientes(centro_medico);
     
-
     menu(centro_medico);
     return 0;
 }
@@ -28,12 +27,13 @@ void menu(CentroMedico &centroMedico){
     int opcion;
     
     do {
+        system("cls");
         cout << "===== Bienvenido al SISTEMA DE URGENCIAS =====\n";
         cout << "1. Agregar nuevo medico\n";
         cout << "2. Agregar paciente a consultorio\n";
         cout << "3. Atender un paciente\n";
         cout << "4. Imprimir Atendidos\n";
-        cout << "5. cerrar\n";
+        cout << "5. Cerrar\n";
         cout << "Seleccione una opcion: ";
         cin >> opcion;
 
@@ -41,7 +41,8 @@ void menu(CentroMedico &centroMedico){
             case 1: {
                 string nombre;
                 int id_medico, edad;
-
+                system("cls");
+                cout << "===== AGREGAR NUEVO MEDICO =====\n";
                 cout << "Ingrese el nombre del medico: ";
                 cin.ignore();
                 getline(cin, nombre);
@@ -59,7 +60,8 @@ void menu(CentroMedico &centroMedico){
             case 2: {
                 string nombre, doc_identificacion;
                 int edad, triage, id_medico;
-
+                system("cls");
+                cout << "===== AGREGAR PACIENTE A CONSULTORIO =====\n";
                 cout << "Ingrese el nombre del paciente: ";
                 cin.ignore();
                 getline(cin, nombre);
@@ -87,31 +89,45 @@ void menu(CentroMedico &centroMedico){
             case 3:{
                 int TP, ID;
                 Paciente pacienteProximoAtender;
-
-                cout << "que tipo de paciente desea atender?\n"; 
-                cout << "1: prioritario\n";
-                cout << "2: no prioritario\n";
+                system("cls");
+                cout << "===== ATENDER PACIENTE =====\n";
+                cout << "Que tipo de paciente desea atender?\n"; 
+                cout << "1: Prioritario\n";
+                cout << "2: No prioritario\n";
+                cout << "Ingrese una opcion: ";
                 cin >> TP;
 
                 switch(TP){
 
                     case 1:{
                         pacienteProximoAtender=centroMedico.atenderPacientePrioritario();
-                        cout << "\n\n===== SIGUIENTE PACIENTE A ATENDER" << " =====" << endl; 
+                        cout << "===== SIGUIENTE PACIENTE A ATENDER =====\n"; 
                         centroMedico.imprimirPaciente(pacienteProximoAtender);
+                        system("pause");
                         break;
                     }
                     
                     case 2:{                                                
-                        cout << "escriba la identificacion del medico que atendera al paciente?\n";
+                        cout << "Escriba la identificacion del medico que atendera al paciente: ";
                         cin >> ID;
-                        pacienteProximoAtender = centroMedico.siguientePaciente(ID);
-                        if(pacienteProximoAtender.edad == -1){
-                            cout<< "el medico no tiene pacientes en su lista de espera\n";
+                        bool existeMedico = false;
+                        for(Medico medico: centroMedico.medicos_disponibles){
+                            if(medico.id_medico == ID){
+                                existeMedico = true;
+                            }
+                        }
+                        if(existeMedico){
+                            pacienteProximoAtender = centroMedico.siguientePaciente(ID);
+                        }
+                        
+                        if(pacienteProximoAtender.edad == -1 || existeMedico == false){
+                            cout<< "----- El medico no tiene pacientes en su lista de espera -----\n";
+                            system("pause");
                         }
                         else{
-                            cout << "\n\n===== PACIENTE ATENDIDO" << " =====" << endl;
+                            cout << "===== PACIENTE ATENDIDO" << " =====" << endl;
                             centroMedico.imprimirPaciente(pacienteProximoAtender);
+                            system("pause");
                         }
                         break;   
                     }
@@ -123,6 +139,7 @@ void menu(CentroMedico &centroMedico){
             }
             case 4:
                 centroMedico.imprimirAtendidos();
+                system("pause");
             case 5:
                 break;
             default:
